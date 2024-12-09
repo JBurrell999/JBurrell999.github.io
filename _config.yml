@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "James Burrell"
 title_separator          : "-"
 name                     : &name "James Burrell"
 description              : &description "I am a researcher at the University of San Francisco"
@@ -22,7 +22,7 @@ repository               : "JBurrell999/JBurrell999.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "James Burrel"
+  name             : "James Burrell"
   pronouns         : # example: "she/her"  
   bio              : "Researcher at the MAGICS Lab at USFCA with ML and NLP Focus"
   location         : "San Francisco, CA"
