@@ -11,8 +11,8 @@ Personal site for James Burrell. It's plain HTML, CSS and JavaScript with no bui
 | `assets/skylines.js` | ASCII skyline renderer and the three city scenes |
 | `assets/main.js` | Contributions grid, city switching, local time per city |
 | `assets/contributions.js` | Snapshot of the GitHub contributions calendar (generated) |
-| `scripts/fetch_contributions.py` | Regenerates the snapshot from the GitHub GraphQL API |
-| `.github/workflows/deploy.yml` | Deploys to GitHub Pages on push, and daily to refresh contributions |
+| `scripts/fetch_contributions.py` | Regenerates the snapshot from the GitHub profile's contributions calendar |
+| `.github/workflows/deploy.yml` | Deploys to GitHub Pages on push, and every 6 hours to refresh contributions |
 | `404.html` | Not-found page |
 
 ## The skylines
@@ -38,13 +38,13 @@ python3 -m http.server 8000
 ## Edit content
 
 - **Bio, links, projects:** edit `index.html` directly. Each project is one `<li>` in `.project-list`.
-- **Contributions:** `GITHUB_TOKEN=$(gh auth token) python3 scripts/fetch_contributions.py`
+- **Contributions:** `python3 scripts/fetch_contributions.py` (no token needed)
 
 ## Deploy
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which refreshes the contributions snapshot and publishes the site
-with GitHub Pages. In the repo settings, set **Pages → Source** to **GitHub Actions**. The workflow also runs daily so the
-contributions graph stays current.
+with GitHub Pages. In the repo settings, set **Pages → Source** to **GitHub Actions**. The workflow also runs every 6
+hours so the contributions graph stays current.
 
-The workflow's built-in token only sees public contributions. To include private ones, add a classic personal access
-token with the `read:user` scope as a repository secret named `CONTRIBUTIONS_TOKEN`.
+Contributions are read from the same public calendar the GitHub profile shows, so private contributions are included
+as counts, exactly as on the profile. The GraphQL API is only a fallback; it sees public contributions only.

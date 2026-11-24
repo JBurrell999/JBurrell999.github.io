@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "17 9 * * *" # daily, to refresh the contributions graph
+    - cron: "17 */6 * * *" # every 6 hours, to refresh the contributions graph
   workflow_dispatch:
 
 permissions:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Refresh contributions snapshot
         env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # only used if the profile calendar can't be read
         run: python3 scripts/fetch_contributions.py
 
       - name: Assemble site
